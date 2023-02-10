@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/cross_btn"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginStart="10dp"
@@ -38,12 +38,12 @@
             android:textSize="22sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/button3"
-            app:layout_constraintStart_toEndOf="@+id/imageButton"
+            app:layout_constraintEnd_toStartOf="@+id/saveContactBtn"
+            app:layout_constraintStart_toEndOf="@+id/cross_btn"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/button3"
+            android:id="@+id/saveContactBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Save"
@@ -67,7 +67,7 @@
 
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/shapeableImageView"
+        android:id="@+id/contactProfileImage"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginTop="30dp"
@@ -80,15 +80,15 @@
         app:shapeAppearance="@style/circularImageView" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/add_picture_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="Add Picture"
         android:textColor="@color/teal_700"
-        app:layout_constraintEnd_toEndOf="@+id/shapeableImageView"
-        app:layout_constraintStart_toStartOf="@+id/shapeableImageView"
-        app:layout_constraintTop_toBottomOf="@+id/shapeableImageView" />
+        app:layout_constraintEnd_toEndOf="@+id/contactProfileImage"
+        app:layout_constraintStart_toStartOf="@+id/contactProfileImage"
+        app:layout_constraintTop_toBottomOf="@+id/contactProfileImage" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -98,7 +98,7 @@
         android:layout_marginTop="15dp"
         app:layout_constraintBottom_toBottomOf="@+id/txtInpLayFirstName"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/add_picture_txt"
         app:srcCompat="@drawable/contact_icon" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -111,9 +111,10 @@
         android:hint="First Name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/textView3">
+        app:layout_constraintTop_toBottomOf="@+id/add_picture_txt">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/contact_First_Name"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
@@ -131,6 +132,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txtInpLayFirstName">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/contact_Last_Name"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
@@ -157,8 +159,10 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/contact_Mobile_Number"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:inputType="number"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -183,6 +187,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout2">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/contact_Email"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

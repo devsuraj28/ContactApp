@@ -6,14 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".PhoneFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_dialpad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Phone Fragment"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="40dp"
+        app:backgroundTint="#4CAF50"
+        android:clickable="true"
+        android:src="@drawable/dialpad_icon"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
