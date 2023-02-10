@@ -1,16 +1,20 @@
 package com.example.contact
 
-import android.media.Image
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
+import android.view.View.OnTouchListener
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.contact.Adapters.contactAdapter
@@ -28,6 +32,7 @@ class ContactsFragment : Fragment() {
     lateinit var bottom_sheet_dialpad: BottomSheetDialog
 
     lateinit var txtNumbers: TextView
+    lateinit var backspaceBtn: ImageButton
     lateinit var txt1: TextView
     lateinit var txt2: TextView
     lateinit var txt3: TextView
@@ -67,8 +72,10 @@ class ContactsFragment : Fragment() {
         fab_dialpad = view.findViewById(R.id.fab_dialpad)
         fab_dialpad.setOnClickListener()
         {
-            bottom_sheet_dialpad()
-            fab_dialpad.isVisible = false
+//            bottom_sheet_dialpad()
+//            fab_dialpad.isVisible = false
+
+            startActivity(Intent(requireContext(),AddNewContact::class.java))
         }
 
 
@@ -97,6 +104,7 @@ class ContactsFragment : Fragment() {
 
 
         txtNumbers = view.findViewById(R.id.txtNumbers)
+        backspaceBtn = view.findViewById(R.id.backspace_btn)
         txt1 = view.findViewById(R.id.txt1)
         txt2 = view.findViewById(R.id.txt2)
         txt3 = view.findViewById(R.id.txt3)
@@ -110,69 +118,85 @@ class ContactsFragment : Fragment() {
         txt_star = view.findViewById(R.id.txtstar)
         txt_hash = view.findViewById(R.id.txthash)
 
-        txtNumbers.text = ""
 
         txt1.setOnClickListener()
         {
             txtNumbers.isVisible = true
-            txtNumbers.text = "1"
+            backspaceBtn.isVisible = true
+            txtNumbers.append("1")
         }
         txt2.setOnClickListener()
         {
             txtNumbers.isVisible = true
-            txtNumbers.text = "2"
+            backspaceBtn.isVisible = true
+            txtNumbers.append("2")
         }
         txt3.setOnClickListener()
         {
             txtNumbers.isVisible = true
-            txtNumbers.text = "3"
+            backspaceBtn.isVisible = true
+            txtNumbers.append("3")
         }
         txt4.setOnClickListener()
         {
             txtNumbers.isVisible = true
-            txtNumbers.text = "4"
+            backspaceBtn.isVisible = true
+            txtNumbers.append("4")
         }
         txt5.setOnClickListener()
         {
             txtNumbers.isVisible = true
-            txtNumbers.text = "5"
+            backspaceBtn.isVisible = true
+            txtNumbers.append("5")
         }
         txt6.setOnClickListener()
         {
             txtNumbers.isVisible = true
-            txtNumbers.text = "6"
+            backspaceBtn.isVisible = true
+            txtNumbers.append("6")
         }
         txt7.setOnClickListener()
         {
             txtNumbers.isVisible = true
-            txtNumbers.text = "7"
+            backspaceBtn.isVisible = true
+            txtNumbers.append("7")
         }
         txt8.setOnClickListener()
         {
             txtNumbers.isVisible = true
-            txtNumbers.text = "8"
+            backspaceBtn.isVisible = true
+            txtNumbers.append("8")
         }
         txt9.setOnClickListener()
         {
             txtNumbers.isVisible = true
-            txtNumbers.text = "9"
+            backspaceBtn.isVisible = true
+            txtNumbers.append("9")
         }
         txt0.setOnClickListener()
         {
             txtNumbers.isVisible = true
-            txtNumbers.text = "0"
+            backspaceBtn.isVisible = true
+            txtNumbers.append("0")
         }
         txt_star.setOnClickListener()
         {
             txtNumbers.isVisible = true
-            txtNumbers.text = "*"
+            backspaceBtn.isVisible = true
+            txtNumbers.append("*")
         }
         txt_hash.setOnClickListener()
         {
             txtNumbers.isVisible = true
-           
+            backspaceBtn.isVisible = true
+            txtNumbers.append("#")
         }
 
+        backspaceBtn.setOnClickListener()
+        {
+            var updated_String: String = txtNumbers.text.toString()
+            updated_String = updated_String.subSequence(0, updated_String.length - 1).toString()
+            txtNumbers.setText(updated_String)
+        }
     }
-
 }
