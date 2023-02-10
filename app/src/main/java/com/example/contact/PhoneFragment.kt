@@ -14,14 +14,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.NonDisposableHandle.parent
 
 
-/**
- * A simple [Fragment] subclass.
- * Use the [PhoneFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class PhoneFragment : Fragment() {
 
-    lateinit var fab_dialPad : FloatingActionButton
+    lateinit var fab_dialPad: FloatingActionButton
     lateinit var bottom_sheet_dialpad: BottomSheetDialog
 
     lateinit var txtNumbers: TextView

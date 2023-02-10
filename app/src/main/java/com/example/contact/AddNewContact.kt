@@ -73,10 +73,10 @@ class AddNewContact : AppCompatActivity() {
     private fun sendContactDetailsToFB() {
 
         var contactDetails = hashMapOf(
-            "First Name" to contactFirstName.text.toString(),
-            "Last Name" to contactLastName.text.toString(),
-            "Mobile Number" to contactMobileNumber.text.toString(),
-            "Email Address" to contactEmail.text.toString()
+            "First_Name" to contactFirstName.text.toString(),
+            "Last_Name" to contactLastName.text.toString(),
+            "Mobile_Number" to contactMobileNumber.text.toString(),
+            "Email_Address" to contactEmail.text.toString()
         )
 
         databaseReference.child("Contact Details").child(contactMobileNumber.text.toString())
