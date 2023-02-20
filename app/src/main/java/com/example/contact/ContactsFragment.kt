@@ -3,6 +3,7 @@ package com.example.contact
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
@@ -36,6 +37,7 @@ class ContactsFragment : Fragment() {
     lateinit var contactAdapterV2: contactAdapterV2
 
     lateinit var fab_add: FloatingActionButton
+    lateinit var searchEdtTxt: EditText
 
     lateinit var databaseReference: DatabaseReference
 
@@ -69,6 +71,22 @@ class ContactsFragment : Fragment() {
         recView.adapter = contactAdapterV2
 
         fab_add = view.findViewById(R.id.fab_add)
+        searchEdtTxt = view.findViewById(R.id.searchEdtTxt)
+
+        searchEdtTxt.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                //TODO()
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                searchContact(s.toString())
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                //TODO()
+            }
+        })
+
         fab_add.setOnClickListener()
         {
             startActivity(Intent(requireContext(), AddNewContact::class.java))
@@ -103,6 +121,26 @@ class ContactsFragment : Fragment() {
         singleContactList = ArrayList()
         for (i in 0..20) {
             singleContactList.add(contactModel(R.drawable.contact_icon, "Random User Name"))
+        }
+    }
+
+    private fun searchContact(searchString: String) {
+        var filteredList: ArrayList<contactModelV2> = ArrayList()
+
+        for (contact in contactList) {
+            if (contact.First_Name!!.lowercase()
+                    .contains(searchString.lowercase()) || contact.Last_Name!!.lowercase()
+                    .contains(searchString.lowercase())
+            ) {
+                filteredList.add(contact)
+            }
+        }
+        if(filteredList.isEmpty()){
+            Toast.makeText(requireContext(),"No data found!!",Toast.LENGTH_SHORT).show()
+        }
+        else
+        {
+            contactAdapterV2.filteredList(filteredList)
         }
     }
 
