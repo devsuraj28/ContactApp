@@ -28,7 +28,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.*
 
 
-class ContactsFragment : Fragment() {
+class ContactsFragment : Fragment(), contactAdapterV2.ItemClickListener {
 
     lateinit var recView: RecyclerView
     lateinit var singleContactList: ArrayList<contactModel>
@@ -65,7 +65,7 @@ class ContactsFragment : Fragment() {
         databaseReference = FirebaseDatabase.getInstance().reference.child("Contact Details")
 
         getContactDetailsFromFB()
-        contactAdapterV2 = contactAdapterV2(requireContext(), contactList)
+        contactAdapterV2 = contactAdapterV2(requireContext(), contactList, this)
         recView = view.findViewById(R.id.recView)
         recView.layoutManager = LinearLayoutManager(requireContext())
         recView.adapter = contactAdapterV2
@@ -135,14 +135,18 @@ class ContactsFragment : Fragment() {
                 filteredList.add(contact)
             }
         }
-        if(filteredList.isEmpty()){
-            Toast.makeText(requireContext(),"No data found!!",Toast.LENGTH_SHORT).show()
-        }
-        else
-        {
+        if (filteredList.isEmpty()) {
+            Toast.makeText(requireContext(), "No data found!!", Toast.LENGTH_SHORT).show()
+        } else {
             contactAdapterV2.filteredList(filteredList)
         }
     }
 
+    override fun itemClicked(item: contactModelV2) {
+        val data_intent = Intent(requireContext(), contactDetailActivity::class.java)
+        data_intent.putExtra("contactName",item.First_Name + " " +item.Last_Name)
+        data_intent.putExtra("contactNumber",item.Mobile_Number)
+        startActivity(data_intent)
+    }
 
 }

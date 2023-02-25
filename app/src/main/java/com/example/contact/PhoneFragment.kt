@@ -1,5 +1,7 @@
 package com.example.contact
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,10 +12,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.isVisible
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.NonDisposableHandle.parent
 
-
+//21015301122
 class PhoneFragment : Fragment() {
 
     lateinit var fab_dialPad: FloatingActionButton
@@ -33,6 +36,7 @@ class PhoneFragment : Fragment() {
     lateinit var txt0: TextView
     lateinit var txt_star: TextView
     lateinit var txt_hash: TextView
+    lateinit var callBtn: MaterialButton
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,6 +61,7 @@ class PhoneFragment : Fragment() {
             bottom_sheet_dialpad()
             fab_dialPad.isVisible = false
         }
+
     }
 
     private fun bottom_sheet_dialpad() {
@@ -88,6 +93,14 @@ class PhoneFragment : Fragment() {
         txt0 = view.findViewById(R.id.txt0)
         txt_star = view.findViewById(R.id.txtstar)
         txt_hash = view.findViewById(R.id.txthash)
+        callBtn = view.findViewById(R.id.callBtn)
+
+        callBtn.setOnClickListener()
+        {
+            val callIntent = Intent(Intent.ACTION_CALL)
+            callIntent.setData(Uri.parse("tel:"+txtNumbers.text.toString()))
+            startActivity(callIntent)
+        }
 
 
         txt1.setOnClickListener()
@@ -169,5 +182,7 @@ class PhoneFragment : Fragment() {
             updated_String = updated_String.subSequence(0, updated_String.length - 1).toString()
             txtNumbers.setText(updated_String)
         }
+
+
     }
 }
